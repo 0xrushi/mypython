@@ -52,20 +52,22 @@ for i in subject_index:
     S21024.append(pd.read_csv('assign_3_data.csv').iloc[:,i])
 
 S21024=[i.replace('FF','0') for i in S21024]
-S21024=[i.replace('NaN','0') for i in S21024]
-
+#S21025=[i==i for i in S21024]
+#print(S21024)
+for i in range(len(S21024)):
+    for j in range(len(S21024[i])):
+        if(S21024[i][j]!=S21024[i][j]):
+            S21024[i][j]=0
 for i in range(0,len(subject_index)):
-	nps21024.append(np.array(S21024[i],dtype=np.int))
+    nps21024.append(np.array(S21024[i],dtype=np.int))
 
 for i in range(0,len(nps21024)):
 	x=calculate(nps21024[i])
-	#print(x)
+	print(x)
 	#print("----------------------------------------------------\n")
 	myar=[len(nps21024[i][x[0]]),len(nps21024[i][x[1]]),len(nps21024[i][x[2]]),len(nps21024[i][x[3]]),len(nps21024[i][x[4]]),len(nps21024[i][x[5]])]
 	plt.bar(np.arange(6), myar, align='center', alpha=0.5)
 	plt.xticks(np.arange(6), labels)
 	plt.ylabel('Usage')
-	plt.title('Programming language usage')
-	 
+	plt.title('Programming language usage')	 
 	plt.show()
-
